@@ -1,7 +1,2 @@
-# Plotting Event Data
-
-Plot event data in an interactive 3D plot. The events are represented as tuples of (X, Y, timestamp, Polarity).
-
-## Utilities
-
-read_events: Converts .bin files to NumPy arrays.
+# Events_Plot3D
+Events_Plot3D
