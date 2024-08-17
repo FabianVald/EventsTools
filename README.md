@@ -1,6 +1,7 @@
-# Events_Plot3D
+Plotting Event Data
+Plotting Events
 
-###Plot a np events like (X,Y,timestamp,Polarity) in an interactive 3D PLOT.
+Plot event data in an interactive 3D plot. The events are represented as tuples of (X, Y, timestamp, Polarity).
+Utilities
 
-##Utilities
-#### read_events: .bin files to np.
+    read_events: Converts .bin files to NumPy arrays.
