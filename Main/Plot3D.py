@@ -4,38 +4,75 @@ import os
 import plotly.graph_objects as go
 
 
-filename = ''
-events = read_events(filename) 
+def plot3D_bin(path):
+    events = read_events(path) 
 
-X = events[:, 0]
-Y = events[:, 1]
-polarity = events[:, 2]
-colors = np.where(polarity == 0, 'black', 'blue')
-timestamp = events[:, 3]
-
-
-fig = go.Figure(
-    [
-        go.Scatter3d(x=X, 
-                     y=Y,
-                     z=timestamp, mode='markers',
-        marker=dict(size=1, color = colors))
-    ]
-)
-fig.update_layout(scene=dict(        
-                    xaxis_title='X Axis',
-                    yaxis_title='Y Axis',
-                    zaxis_title='Timestamp',
-                    xaxis=dict(showgrid=False, showbackground=False, showticklabels=False, visible=False),
-                    yaxis=dict(showgrid=False, showbackground=False, showticklabels=False, visible=False),
-                    zaxis=dict(showgrid=False, showbackground=False, showticklabels=False, visible=False)
-                    ),    
-                  title='3D Event Plot'
-                )
+    X = events[:, 0]
+    Y = events[:, 1]
+    polarity = events[:, 2]
+    colors = np.where(polarity == 0, 'black', 'blue')
+    timestamp = events[:, 3]
 
 
-fig.update_layout(scene_camera=dict(
-    eye=dict(x=1, y=1.3, z=1)
-))
+    fig = go.Figure(
+        [
+            go.Scatter3d(x=X, 
+                        y=Y,
+                        z=timestamp, mode='markers',
+            marker=dict(size=1, color = colors))
+        ]
+    )
+    fig.update_layout(scene=dict(        
+                        xaxis_title='X Axis',
+                        yaxis_title='Y Axis',
+                        zaxis_title='Timestamp',
+                        xaxis=dict(showgrid=False, showbackground=False, showticklabels=False, visible=False),
+                        yaxis=dict(showgrid=False, showbackground=False, showticklabels=False, visible=False),
+                        zaxis=dict(showgrid=False, showbackground=False, showticklabels=False, visible=False)
+                        ),    
+                    title='3D Event Plot'
+                    )
 
-fig.show()
+
+    fig.update_layout(scene_camera=dict(
+        eye=dict(x=1, y=1.3, z=1)
+    ))
+
+    fig.show()
+    
+    
+def plot3D_np(array):
+    events = array
+
+    X = events[:, 0]
+    Y = events[:, 1]
+    polarity = events[:, 2]
+    colors = np.where(polarity == 0, 'black', 'blue')
+    timestamp = events[:, 3]
+
+
+    fig = go.Figure(
+        [
+            go.Scatter3d(x=X, 
+                        y=Y,
+                        z=timestamp, mode='markers',
+            marker=dict(size=1, color = colors))
+        ]
+    )
+    fig.update_layout(scene=dict(        
+                        xaxis_title='X Axis',
+                        yaxis_title='Y Axis',
+                        zaxis_title='Timestamp',
+                        xaxis=dict(showgrid=False, showbackground=False, showticklabels=False, visible=False),
+                        yaxis=dict(showgrid=False, showbackground=False, showticklabels=False, visible=False),
+                        zaxis=dict(showgrid=False, showbackground=False, showticklabels=False, visible=False)
+                        ),    
+                    title='3D Event Plot'
+                    )
+
+
+    fig.update_layout(scene_camera=dict(
+        eye=dict(x=1, y=1.3, z=1)
+    ))
+
+    fig.show()

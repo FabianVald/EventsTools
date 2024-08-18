@@ -1,8 +1,8 @@
 import numpy as np
 
-def read_events(filename):
+def read_events(path):
     events = []
-    with open(filename, 'rb') as f:
+    with open(path, 'rb') as f:
         while True:
             data = f.read(5)
             if len(data) < 5:
@@ -19,4 +19,8 @@ def read_events(filename):
     
     return np.array(events)
 
-
+def find_min_max(array, index, find_min=True):
+    if find_min:
+        return min(array, key=lambda evento: evento[index])[index]
+    else:
+        return max(array, key=lambda evento: evento[index])[index]

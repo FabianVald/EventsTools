@@ -13,23 +13,17 @@ def np2img_(events, width, height):
 def filter_events_by_time(events, start_time, end_time):
     return events[(events[:, 3] >= start_time) & (events[:, 3] <= end_time)]
 
-filename = ''
-events = read_events(filename) 
 
-width = 240
-height = 100
 
-T_milliseconds = 33
-T_microseconds = T_milliseconds * 1000  # milisegundos a microsegundos
+def np2img_windows_np(array, width, height, T_milliseconds,start_time):
+    events = array 
 
-#setear tiempos relativos o absolutos.
-start_time = 0
-end_time = T_microseconds
+    T_microseconds = T_milliseconds# milisegundos a microsegundos
 
-filtered_events = filter_events_by_time(events, start_time, end_time)
-image = np2img_(filtered_events, width, height)
+    #setear tiempos relativos o absolutos.
+    end_time = start_time + T_microseconds
 
-plt.imshow(image, cmap='gray', origin='upper')
-plt.colorbar()  
-plt.title(f'Imagen de Eventos ({T_milliseconds} ms)')
-plt.show()
+    filtered_events = filter_events_by_time(events, start_time, end_time)
+    image = np2img_(filtered_events, width, height)
+
+    return image
